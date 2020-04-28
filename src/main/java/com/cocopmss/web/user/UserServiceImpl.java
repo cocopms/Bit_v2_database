@@ -1,7 +1,11 @@
 package com.cocopmss.web.user;
-
-import java.util.HashMap;
+//저장공간이 map에서 file로 바뀌었으므로 구조 다 바뀜
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
 
 import org.springframework.stereotype.Service;
 
@@ -9,19 +13,34 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService{
 	private Map<String, Object> map; //이젠 끄면 사라지는 맵에 저장하지 않고, 오프라인에 저장하려 한다
 	public final static String FILE_PATH = "C:\\Users\\bit\\spring-workspace\\occamsrazor\\src\\main\\resources\\static\\user\\";
-	
-	public UserServiceImpl() {
-		map = new HashMap<>();
-	}
 
 	@Override
 	public void add(User user) {
 		map.put(user.getUserid(), user);
 	}
+	
+	@SuppressWarnings("rawtypes")
+	@Override
+	public List<User> list() {
+		List<User> list = new ArrayList<>();
+		@SuppressWarnings("rawtypes")
+		Set set = map.entrySet(); //set = map의 entry를 넣는, map 순서가 없기 때문에 순서 없는 set으로..
+		@SuppressWarnings("rawtypes")
+		Iterator it= set.iterator();
+		while(it.hasNext()) { //다음게 있냐없냐
+			@SuppressWarnings("unchecked")
+			Map.Entry<String, User> e = (Entry<String, User>) it.next(); //순서대로 리턴
+			list.add(e.getValue()); //키는 빼고 value만.. 
+		}
+		for(int i=0; i<list.size(); ++i) {
+			System.out.println(list.get(i));
+		}
+		return list;
+	}
 
 	@Override
 	public int count() {
-		return map.size();
+		return 0;
 	}
 
 	@Override
@@ -38,21 +57,29 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User detail(String userid) {
-		System.out.println("서비스 detail 들어온 id: "+userid);
-		User t = (User) map.get(userid);
-		System.out.println("===============> "+t);
-		return t;
+		return null;
 	}
 
 	@Override
 	public boolean update(User user) {
-		map.replace(user.getUserid(), user);
 		return true;
 	}
 
 	@Override
 	public boolean remove(String userid) {
-		map.remove(userid);
 		return true;
+	}
+	
+	@Override
+	public boolean check(String userid) {
+		boolean ok = true;
+		List<User> list = list();
+		for(int i =0; i<list.size(); ++i) {
+			if(userid.equals(list.get(i).getUserid())) { //아이디만 골라서 list id와 비교해야함
+				ok = false;
+				break;
+			}
+		}
+		return ok;
 	}
 }

@@ -24,7 +24,6 @@ public class UserController {
 	
 		@PostMapping("/join")
 		public Messanger join(@RequestBody User user) {
-			System.out.println(user);
 			service.add(user); //add에서 saverfile로!(온라인에서 db로)
 			//return (count+1 == service.count()) ? Messanger.SUCCESS : Messanger.FAIL;
 			return Messanger.SUCCESS;
