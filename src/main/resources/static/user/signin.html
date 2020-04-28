@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+	background-color: #666;
+	padding: 30px;
+	text-align: center;
+	font-size: 35px;
+	color: white;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+	float: left;
+	width: 30%;
+	height: 300px; /* only for demonstration, should be removed */
+	background: #ccc;
+	padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+article {
+	float: left;
+	padding: 20px;
+	width: 70%;
+	background-color: #f1f1f1;
+	height: 300px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* Style the footer */
+footer {
+	background-color: #777;
+	padding: 10px;
+	text-align: center;
+	color: white;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media ( max-width : 600px) {
+	nav, article {
+		width: 100%;
+		height: auto;
+	}
+}
+</style>
+</head>
+<body>
+	<header>
+		<h2>사용자 로그인</h2>
+	</header>
+	<section>
+		<nav>
+			<ul>
+				<li><a id="home_a">Home</a></li>
+			</ul>
+		</nav>
+		<article>
+			<!-- 로그인자리 -->
+			<h1>로그인</h1>
+			<form action="#">
+				<label>아이디</label><br> <input id="userid" type="text"><br>
+				<label>비밀번호</label><br> <input id="passwd" type="text"><br>
+				<input id="login_button" type="button" value="로그인"> <input
+					id="cancel_button" type="button" value="취소">
+			</form>
+		</article>
+	</section>
+
+	<footer>
+		<p>Footer</p>
+	</footer>
+
+	<!-- 자바스크립트 변수명과 자바의 변수명은 맞추는 게 좋다 -->
+
+	<script type="text/javascript">
+	$('#home_a')
+		.css('cursor', 'pointer')
+		.click (e => {
+			e.preventDefault()
+			location.href = '../index.html'
+	})
+	$('#login_button').click ( e => {
+			e.preventDefault()
+		$.ajax({
+			url : '/User/login',
+			type : 'post',
+			data : JSON.stringify ({
+				userid : $('#userid').val(),
+				passwd : $('#passwd').val()
+			}),
+			dataType : 'json',
+			contentType : 'application/json',
+			
+			success : d => {/* d.key값 */
+				if(d.messanger === 'SUCCESS') {
+					alert('로그인 성공')
+					location.href = 'mypage.html'
+				} else{
+					alert('로그인 실패')
+					location.href = 'signin.html'
+				}
+			},
+			error : (request,status,error) => {
+				"code = "+ request.status + " message = " + request.responseText + " error = " + error
+			}
+		})
+	})
+	</script>
+</body>
+</html>
