@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+	background-color: #666;
+	padding: 30px;
+	text-align: center;
+	font-size: 35px;
+	color: white;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+	float: left;
+	width: 30%;
+	height: 300px; /* only for demonstration, should be removed */
+	background: #ccc;
+	padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+article {
+	float: left;
+	padding: 20px;
+	width: 70%;
+	background-color: #f1f1f1;
+	height: 300px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* Style the footer */
+footer {
+	background-color: #777;
+	padding: 10px;
+	text-align: center;
+	color: white;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media ( max-width : 600px) {
+	nav, article {
+		width: 100%;
+		height: auto;
+	}
+}
+</style>
+</head>
+<body>
+	<header>
+		<h2>로그인</h2>
+	</header>
+	<section>
+		<nav>
+			<ul>
+				<li><a id="join_a">관리자 목록</a></li>
+				<li><a id="login_a">관리자 접속</a></li>
+				<li><a id="signup_a">사용자 가입</a></li>
+				<li><a id="signin_a">사용자 로그인</a></li>
+			</ul>
+		</nav>
+		<article>
+			<!-- 로그인자리 -->
+			<h1>로그인</h1>
+			<form action="#">
+				<label>아이디</label><br> <input id="userid" type="text"><br>
+				<label>비밀번호</label><br> <input id="passwd" type="text"><br>
+				<input id="login-button" type="button" value="로그인"> <input
+					id="cancel-button" type="button" value="취소">
+			</form>
+		</article>
+	</section>
+
+	<footer>
+		<p>Footer</p>
+	</footer>
+
+	<!-- 자바스크립트 변수명과 자바의 변수명은 맞추는 게 좋다 -->
+
+	<script type="text/javascript">
+
+	$('#join_a')
+	.css('cursor', 'pointer')
+	.click (e => {
+		e.preventDefault()
+		location.href = 'member/join.html'
+	})
+	$('#login_a')
+		.css('cursor', 'pointer') /* 즉시실행 */
+		.click (e => { /* 지연실행 */
+			e.preventDefault()
+		location.href = 'index.html'
+	})
+	$('#signup_a')
+		.css('cursor', 'pointer')
+		.click (e => {
+			e.preventDefault()
+			location.href = 'user/signup.html'
+	})
+	$('#signin_a')
+		.css('cursor', 'pointer')
+		.click (e => {
+			e.preventDefault()
+			location.href = 'user/signin.html'
+	})
+	
+	$('#login-button').click(e =>{
+		$.ajax({
+			url : '/member/login', //컨트롤러 () 이거 확인
+			type : 'post',		   //컨트롤러 @PostMapping 이거 확인
+			data : JSON.stringify(
+					{userid : $('#userid').val(),
+					passwd : $('#passwd').val()}),
+			dataType : 'json', //지우면 default값으로 데이터 타입이 설정됨, 없애면 안돼 xml의 시대는 갔다고!
+			contentType : 'application/json',
+			
+		//위는 속성값, 아래는 기능값(function)
+			
+			success : function(returnMessage) {
+				if (returnMessage === "SUCCESS") {
+					location.href = 'member/list.html'
+				} else {
+					alert('정보가 확실하지 않습니다. 다시 로그인해주세요.')
+					location.href = 'index.html'
+				}
+			},
+			error : function() {
+				alert('Networking ERROR')
+				//location.href = "join.html" //다시 회원가입하라
+			}
+		}) //{} 있으니 메소드
+	})
+	$('#cancel-button').click(function() {
+		alert('취소')
+	})
+	</script>
+</body>
+</html>
