@@ -107,7 +107,7 @@ footer {
 	.css('cursor', 'pointer')
 	.click (e => {
 		e.preventDefault()
-		location.href = 'member/join.html'
+		location.href = 'admin/join.html'
 	})
 	$('#login_a')
 		.css('cursor', 'pointer') /* 즉시실행 */
@@ -130,7 +130,7 @@ footer {
 	
 	$('#login-button').click(e =>{
 		$.ajax({
-			url : '/member/login', //컨트롤러 () 이거 확인
+			url : '/admin/login', //컨트롤러 () 이거 확인
 			type : 'post',		   //컨트롤러 @PostMapping 이거 확인
 			data : JSON.stringify(
 					{userid : $('#userid').val(),
@@ -140,9 +140,9 @@ footer {
 			
 		//위는 속성값, 아래는 기능값(function)
 			
-			success : function(returnMessage) {
+			success : returnMessage => {
 				if (returnMessage === "SUCCESS") {
-					location.href = 'member/list.html'
+					location.href = 'user/mypage.html'
 				} else {
 					alert('정보가 확실하지 않습니다. 다시 로그인해주세요.')
 					location.href = 'index.html'

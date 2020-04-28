@@ -113,7 +113,7 @@ footer {
 			e.preventDefault()
 			
 			$.ajax({ /* 서버로 간다 */
-				url : '/member/join', /* MemberController과 맞춰줘야 함, 앞의 것을 붙여라 */
+				url : '/admin/join', /* MemberController과 맞춰줘야 함, 앞의 것을 붙여라 */
 				type : 'post', /* 암호화, url mapping, 추가하는 작업이기에 create-post */
 				data : JSON.stringify({
 					name : $('#name').val(), /* 자바의 member 변수와 맞춰야 한다 */

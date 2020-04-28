@@ -111,7 +111,7 @@
     		  alert('변경사항이 없습니다')
     	  }else{
     		  $.ajax({
-    			  url : '/user/update',
+    			  url : '/User/update',
     			  type : 'put',
     			  data : JSON.stringify({
     				 name : $('#name').val(),
@@ -140,7 +140,7 @@
       $('#remove_button').click( e=> {
     	  e.preventDefault()
     	  $.ajax({
-    		  url : '/user/remove/'+sessionStorage.getItem('userid'),
+    		  url : '/User/remove/'+sessionStorage.getItem('userid'),
     		  type : 'delete',
     		  dataType : 'json',
     		  contentType : 'application/json',

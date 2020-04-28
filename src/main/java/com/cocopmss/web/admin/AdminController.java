@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cocopmss.web.util.Messanger;
 
 @RestController // 인터넷url을 처리하는 컨트롤러
-@RequestMapping("/member") // package명과 같아야 함(standard)
+@RequestMapping("/admin") // package명과 같아야 함(standard)
 public class AdminController {
 	@Autowired AdminService service;
 	//Aoutowired 내가 new를 만들지 않아도 new를 만들어준다
