@@ -89,12 +89,18 @@ table, td {
 	$('#nav_second').css('cursor','pointer')
 	$('#nav_third').css('cursor','pointer')
 	$('#nav_fourth').css('cursor','pointer')
+	$('.logo')
+	.css('cursor', 'pointer')
+	.click( e => {
+		e.preventDefault()
+		location.href = 'index.html'
+	})
 	$('#register_but')
 	.click( e => {
 		e.preventDefault()
 		location.href = 'admin/register.html'
 	})
-	$('#login_but')
+	$('#access_but')
 	.css('cursor','pointer')
 	.click( e=> {
 		e.preventDefault()

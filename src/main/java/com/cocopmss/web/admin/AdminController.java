@@ -20,8 +20,7 @@ public class AdminController {
 	
 	@Autowired AdminService service;
 	
-	//crud
-	@PostMapping("/register")
+	@PostMapping("")
 	public Messanger post(@RequestBody Admin admin) {
 		service.register(admin);
 		return Messanger.SUCCESS;
@@ -32,19 +31,18 @@ public class AdminController {
 		return service.findAll();
 	}
 	
-	//연구
-	@GetMapping("/{employeeNumber}") //이렇게 하는 이유 : url로 너무 다 보일까봐..보안
-	public Admin detail(@PathVariable String employeeNumbe) {
-		return service.findOne(employeeNumbe);
+	@GetMapping("/{employeeNumber}") //url로 너무 다 보일까봐..보안
+	public Admin detail(@PathVariable String employeeNumber) {
+		return service.findOne(employeeNumber);
 	}
 	
-	@PutMapping("/{employeeNumber}") //이렇게 하는 이유 : url로 너무 다 보일까봐..보안
+	@PutMapping("/{employeeNumber}")
 	public Messanger put(@RequestBody Admin admin) {
 		service.modify(admin);
 		return Messanger.SUCCESS;
 	}
 	
-	@DeleteMapping("/{employeeNumber}") //이렇게 하는 이유 : url로 너무 다 보일까봐..보안
+	@DeleteMapping("/{employeeNumber}")
 	public Messanger delete(@RequestBody Admin admin) {
 		service.remove(admin);
 		return Messanger.SUCCESS;

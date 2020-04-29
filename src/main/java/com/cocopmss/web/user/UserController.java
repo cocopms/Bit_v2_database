@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,27 +25,29 @@ public class UserController {
 	// 기본적인 rest API(url)
 	@PostMapping("/register")
 	public Messanger register(@RequestBody User user) {
-		service.add(user);
+		service.register(user);
 		return Messanger.SUCCESS;
 	}
 
 	@GetMapping("/list")
 	public List<User> list() {
-		return null;
+		return service.findAll();
 	}
 
 	@GetMapping("/{employeeNumber}") //왜 여기부터 이렇게 쓰는가.
-	public User detail() {
-		return null;
+	public User detail(@PathVariable String employeeNumber) {
+		return service.findOne(employeeNumber);
 	}
 
 	@PutMapping("/{employeeNumber}")
 	public Messanger put(@RequestBody User user) {
+		service.modify(user);
 		return Messanger.SUCCESS;
 	}
 
 	@DeleteMapping("/{employeeNumber}")
 	public Messanger delete(@RequestBody User user) {
+		service.remove(user);
 		return Messanger.SUCCESS;
 	}
 }

@@ -1,10 +1,14 @@
 package com.cocopmss.web.admin;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data //이 외의 값을 자바스크립트에 입력하면 null값이 뜬다
+@Getter @Setter
 public class Admin {
 	private String employeeNumber, name, passwd, position, profile, registerDate, phoneNumber, email;
 
+	public String toString() {
+		return String.format("%s,%s,%s,%s,%s,%s,%s,%s",
+				employeeNumber,passwd,name,position,profile,email,phoneNumber,registerDate);
+	}
 }
-//employeenumber random

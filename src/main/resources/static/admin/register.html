@@ -6,12 +6,11 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
-table {
+table, td {
 	border: 1px solid black;
-}
-
-table td {
-	border: 1px solid black;
+	margin
+	0
+	auto;
 }
 
 .photo {
@@ -19,88 +18,108 @@ table td {
 	height: 400px;
 }
 
-.input_td {
-	text-align: center;
-	background: tomato;
+.img {
+	max-width: 100%;
+	height: auto;
+	align: center;
 }
 
-.input {
-	width: 300px;
-	height: 100px;
-	background: white;
-	float: right;
-	padding: 5px;
+.logo {
+	max-width: 100%;
+	height: auto;
 }
 
-.but {
-	text-align: center;
+.search_td {
+	border: 1px solid #21A089;
+	background: right;
+}
+
+.search_input {
+	width: 350px;
+	height: 20px;
+	border: 0px;
+}
+
+.search_but {
+	width: 50px;
+	height: 40px;
+	background: #21A089;
 }
 </style>
-
 </head>
 <body>
-	<header>관리자 등록</header>
-
 	<section>
-		<table>
+		<table id="lists">
 			<tr>
-				<td rowspan="4"><img class="photo"
-					src="https://pds.joins.com/news/component/htmlphoto_mmdata/201909/01/136ad58b-b410-4db8-939b-ec0b40b9d1f5.jpg"></td>
-				<td class="input_td">이름 <input id="name" class="input"
-					type="text" />
-				</td>
+				<td class="logo" colspan="2"><img
+					src="http://www.cdc.go.kr/cdc/img/main/h1_logo.png"></td>
+				<td class="search_td"><input class="search_input" type="text"
+					placeholder="검색어">
+					<button class="search_but">검색</button></td>
+				<td><button id="login_but">사용자 로그인</button>
+					<button id="join_but">사용자 회원가입</button>
+					<button id="access_but">관리자 접속</button>
+					<button id="register_but">관리자 등록</button></td>
 			</tr>
 			<tr>
-				<td class="input_td">직급 <input id="position" class="input"
-					type="text" />
-				</td>
+				<td>
+					<table>
+						<tr>
+							<td rowspan="4"><img class="photo"
+								src="https://pds.joins.com/news/component/htmlphoto_mmdata/201909/01/136ad58b-b410-4db8-939b-ec0b40b9d1f5.jpg"></td>
+							<td class="input_td">이름 <input id="name" class="input"
+								type="text" />
+							</td>
+						</tr>
+						<tr>
+							<td class="input_td">직급 <input id="position" class="input"
+								type="text" />
+							</td>
 
-			</tr>
-			<tr>
-				<td class="input_td">이메일 <input id="email" class="input"
-					type="text" />
+						</tr>
+						<tr>
+							<td class="input_td">이메일 <input id="email" class="input"
+								type="text" />
+							</td>
+						</tr>
+						<tr>
+							<td class="input_td">전화번호 <input id="phoneNumber"
+								class="input" type="text" />
+							</td>
+						</tr>
+						<tr>
+							<td class="but" colspan="2"><button id="register_but">등록하기</button>
+								<button id="cancel_but">취소하기</button></td>
+						</tr>
+					</table>
 				</td>
-			</tr>
-			<tr>
-				<td class="input_td">전화번호 <input id="phoneNumber" class="input"
-					type="text" />
-				</td>
-			</tr>
-			<tr>
-				<td class="but" colspan="2"><button id="register_but">등록하기</button>
-					<button id="cancel_but">취소하기</button></td>
 			</tr>
 		</table>
 	</section>
+	<footer></footer>
 </body>
 <script>
-	$('#register_but')
-	.css('cursor','pointer')
-	.click(e =>{
-		e.preventDefault()
-		
-		$.ajax({
-			url: '/admins/register',
-			type: 'post',
-			data: JSON.stringify({
-				name : $('#name').val(),
-				position : $('#position').val(),
-				email : $('#email').val(),
-				phoneNumber : $('#phoneNumber').val()
-			}),
-			dataType: 'json',
-			contentType: 'application/json', /* MIME */
-			success: d=> {
-				location.href = 'access.html'
-			error: (request,status,error) => {
-		        alert("code = "+ request.status + " message = " + request.responseText + " error = " + error)
-				}
-			}
-		})
-	})
-	$('#cancel_but').click(e => {
+	$('#nav_first').css('cursor','pointer')
+	$('#nav_second').css('cursor','pointer')
+	$('#nav_third').css('cursor','pointer')
+	$('#nav_fourth').css('cursor','pointer')
+	$('.logo')
+	.css('cursor', 'pointer')
+	.click( e => {
 		e.preventDefault()
 		location.href = '../index.html'
 	})
+	$('#register_but')
+	.click( e => {
+		e.preventDefault()
+		location.href = 'admin/register.html'
+	})
+	$('#login_but')
+	.css('cursor','pointer')
+	.click( e=> {
+		e.preventDefault()
+		location.href = 'user/signin.html'
+	})
 </script>
+</body>
 </html>
