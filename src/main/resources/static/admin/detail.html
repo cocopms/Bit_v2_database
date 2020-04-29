@@ -67,40 +67,16 @@ table td {
 				</td>
 			</tr>
 			<tr>
-				<td class="but" colspan="2"><button id="register_but">등록하기</button>
+				<td class="but" colspan="2"><button id="adminupdate_but">등록하기</button>
 					<button id="cancel_but">취소하기</button></td>
 			</tr>
 		</table>
 	</section>
 </body>
 <script>
-	$('#register_but')
-	.css('cursor','pointer')
-	.click(e =>{
-		e.preventDefault()
+
+	$.getJSON('/admins/'+ '1234' d => {
 		
-		$.ajax({
-			url: '/admins/register',
-			type: 'post',
-			data: JSON.stringify({
-				name : $('#name').val(),
-				position : $('#position').val(),
-				email : $('#email').val(),
-				phoneNumber : $('#phoneNumber').val()
-			}),
-			dataType: 'json',
-			contentType: 'application/json', /* MIME */
-			success: d=> {
-				location.href = 'access.html'
-			error: (request,status,error) => {
-		        alert("code = "+ request.status + " message = " + request.responseText + " error = " + error)
-				}
-			}
-		})
-	})
-	$('#cancel_but').click(e => {
-		e.preventDefault()
-		location.href = '../index.html'
 	})
 </script>
 </html>

@@ -1,7 +1,6 @@
 package com.cocopmss.web.admin;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -10,9 +9,34 @@ import org.springframework.stereotype.Service;
 public class AdminServiceImpl implements AdminService {
 
 	@Override
-	public Map<String, Object> add(Admin admin) {
-		Map<String, Object> map = new HashMap<>();
-		map.put(admin.getEmail(), admin);
-		return map;
+	public void register(Admin admin) {
+		
+		
 	}
+
+	@Override
+	public List<Admin> findAll() {
+		
+		return null;
+	}
+
+	@Override
+	public Admin detail(String employeeNumbe) {
+		
+		return null;
+	}
+
+	@Override
+	public void modify(Admin admin) {
+		
+		
+	}
+
+	@Override
+	public void remove(Admin admin) {
+		
+		
+	}
+	
+
 }

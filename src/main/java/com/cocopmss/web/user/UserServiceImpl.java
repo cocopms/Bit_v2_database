@@ -1,4 +1,8 @@
 package com.cocopmss.web.user;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 //저장공간이 map에서 file로 바뀌었으므로 구조 다 바뀜
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -8,11 +12,11 @@ import java.util.Set;
 import java.util.Map.Entry;
 
 import org.springframework.stereotype.Service;
+import com.cocopmss.web.util.Data;
 
 @Service
 public class UserServiceImpl implements UserService{
 	private Map<String, Object> map; //이젠 끄면 사라지는 맵에 저장하지 않고, 오프라인에 저장하려 한다
-	public final static String FILE_PATH = "C:\\Users\\bit\\spring-workspace\\occamsrazor\\src\\main\\resources\\static\\user\\";
 
 	@Override
 	public void add(User user) {
@@ -63,6 +67,34 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public boolean update(User user) {
 		return true;
+	}
+	
+	public List<User> readfile() {
+		List<User> listUser = new ArrayList<>();
+		List<String> list = new ArrayList<>();
+		try {
+			File file = new File(Data.USER_PATH.toString() + Data.LIST.toString() + Data.CSV.toString());
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String message = "";
+			while((message = br.readLine()) != null) {
+				list.add(message);
+			}
+			br.close();
+		} catch (Exception e) {
+			System.out.println("ERROR");
+		}
+		User user = null;
+		for(int i=0; i<list.size(); ++i) {
+			user = new User();
+			String[] arr = list.get(i).split(",");
+			user.setUserid(arr[0]);
+			user.setPasswd(arr[1]);
+			user.setName(arr[2]);
+			user.setSsn(arr[3]);
+			user.setAddr(arr[4]);
+			listUser.add(user);
+		}
+		return listUser;
 	}
 
 	@Override

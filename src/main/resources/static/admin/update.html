@@ -74,33 +74,30 @@ table td {
 	</section>
 </body>
 <script>
-	$('#register_but')
-	.css('cursor','pointer')
-	.click(e =>{
-		e.preventDefault()
-		
-		$.ajax({
-			url: '/admins/register',
-			type: 'post',
-			data: JSON.stringify({
-				name : $('#name').val(),
-				position : $('#position').val(),
-				email : $('#email').val(),
-				phoneNumber : $('#phoneNumber').val()
-			}),
-			dataType: 'json',
-			contentType: 'application/json', /* MIME */
-			success: d=> {
-				location.href = 'access.html'
-			error: (request,status,error) => {
-		        alert("code = "+ request.status + " message = " + request.responseText + " error = " + error)
+	$('#adminupdate_but')
+		.css('cursor','pointer')
+		.click( e=> {
+			e.preventDefault()
+			
+			$.ajax({
+				url: '/admins/register',
+				type: 'post',
+				data: JSON.stringify({
+					name : $('#name').val(),
+					position : $('#position').val(),
+					email : $('#email').val(),
+					phoneNumber : $('#phoneNumber').val()
+				}),
+				dataType: 'json',
+				contentType: 'application/json', /* MIME */
+				success: d=> {
+					location.href = 'access.html'
 				}
-			}
+			})
 		})
-	})
-	$('#cancel_but').click(e => {
-		e.preventDefault()
-		location.href = '../index.html'
-	})
+		$('#cancel_but').click(e => {
+			e.preventDefault()
+			location.href = '../index.html'
+		})
 </script>
 </html>
