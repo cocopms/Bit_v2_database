@@ -109,6 +109,12 @@ table, td {
 		e.preventDefault()
 		location.href = '../index.html'
 	})
+	$('#cancel_but')
+	.css('cursor','pointer')
+	.click( e=> {
+		e.preventDefault()
+		location.href = '../index.html'
+	})
 	$('#register_but')
 	.click( e => {
 		e.preventDefault()
@@ -118,7 +124,20 @@ table, td {
 	.css('cursor','pointer')
 	.click( e=> {
 		e.preventDefault()
-		location.href = 'user/signin.html'
+		location.href = '../index.html'
+	})
+		})
+	$('#access_but')
+	.css('cursor','pointer')
+	.click( e=> {
+		e.preventDefault()
+		location.href = 'access.html'
+	})
+	$('#join_but')
+	.css('cursor','pointer')
+	.click( e=> {
+		e.preventDefault()
+		location.href = 'register.html'
 	})
 </script>
 </body>

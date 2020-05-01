@@ -8,7 +8,9 @@
 <style>
 table, td {
 	border: 1px solid black;
-	margin 0 auto;
+	margin
+	0
+	auto;
 }
 
 .img {
@@ -23,7 +25,7 @@ table, td {
 }
 
 .search_td {
-	border : 1px solid  #21A089;
+	border: 1px solid #21A089;
 	background: right;
 }
 
@@ -46,13 +48,13 @@ table, td {
 			<tr>
 				<td class="logo" colspan="2"><img
 					src="http://www.cdc.go.kr/cdc/img/main/h1_logo.png"></td>
-				<td class="search_td">
-				<input class="search_input" type="text" placeholder="검색어">
-				<button class="search_but">검색</button></td>
+				<td class="search_td"><input class="search_input" type="text"
+					placeholder="검색어">
+					<button class="search_but">검색</button></td>
 				<td><button id="login_but">사용자 로그인</button>
-				<button id="join_but">사용자 회원가입</button>
-				<button id="access_but">관리자 접속</button>
-				<button id="register_but">관리자 등록</button></td>
+					<button id="join_but">사용자 회원가입</button>
+					<button id="access_but">관리자 접속</button>
+					<button id="register_but">관리자 등록</button></td>
 			</tr>
 			<tr>
 				<td><a id="nav_fisrt">감염병</a></td>
@@ -104,7 +106,19 @@ table, td {
 	.css('cursor','pointer')
 	.click( e=> {
 		e.preventDefault()
-		location.href = 'user/signin.html'
+		location.href = 'admin/access.html'
+	})
+	$('#join_but')
+	.css('cursor','pointer')
+	.click( e=> {
+		e.preventDefault()
+		location.href = 'user/signup.html'
+	})
+	$('#login_but')
+	.css('cursor','pointer')
+	.click( e=> {
+		e.preventDefault()
+		location.href = 'user/access.html'
 	})
 </script>
 </body>
