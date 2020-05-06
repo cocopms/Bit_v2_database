@@ -4,38 +4,34 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 
-import com.cocopmss.web.item.Item;
 import com.cocopmss.web.util.Data;
 
 @Repository
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void insert(User user) {
-		
+
 	}
 
 	@Override
 	public List<User> selectAll() {
 		List<User> users = new ArrayList<>();
 		List<String> temp = new ArrayList<>();
-		try {
-			File file = new File(Data.USERS.toString());
-			BufferedReader reader = new BufferedReader(new FileReader(file));
-			String message = "";
-			while (reader.readLine()!=null) {
+		String message = "";
+		try (BufferedReader reader = new BufferedReader(new FileReader(new File(Data.USERS.toString())))) {
+			while ((message = reader.readLine()) != null) {
 				temp.add(message);
 			}
 			reader.close();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println("에러");
 		}
 		User u = null;
-		for(String s : temp) {
+		for (String s : temp) {
 			u = new User();
 			String[] arr = s.split(",");
 			u.setUserid(arr[0]);
@@ -56,23 +52,23 @@ public class UserDaoImpl implements UserDao{
 	public User selectOne(String userid) {
 		List<User> list = selectAll();
 		User findUser = null;
-			for(User u : list) { //향상된 for문
-				if(userid.equals(u.getUserid())) {
-					findUser = u;
-					
-					break;
-				}
+		for (User u : list) { // 향상된 for문
+			if (userid.equals(u.getUserid())) {
+				findUser = u;
+
+				break;
 			}
+		}
 		return findUser;
 	}
 
 	@Override
 	public void update(User user) {
-		
+
 	}
 
 	@Override
 	public void delete(User user) {
-		
+
 	}
 }
