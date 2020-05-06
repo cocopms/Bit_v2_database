@@ -29,7 +29,7 @@ public class UserController {
 		return Messanger.SUCCESS;
 	}
 
-	@GetMapping("/list")
+	@GetMapping("")
 	public List<User> list() {
 		return service.findAll();
 	}
