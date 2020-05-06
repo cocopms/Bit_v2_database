@@ -13,7 +13,7 @@ public class ItemController {
 	
 	@Autowired ItemService service;
 	
-	@GetMapping("")
+	@GetMapping("/list")
 	public List<Item> list() {
 		return service.findAll();
 	}

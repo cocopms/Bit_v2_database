@@ -1,5 +1,5 @@
 "use strict"
-var adminVue = {
+let adminVue = {
 		join : () => { // 보안이 필요없으므로 이렇게 작성
 			return `
 			<table id="kcdc">

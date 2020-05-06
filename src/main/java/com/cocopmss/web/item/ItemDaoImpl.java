@@ -22,13 +22,16 @@ public class ItemDaoImpl implements ItemDao { // 무조건 try catch
 			while ((message = reader.readLine()) != null) {
 				temp.add(message);
 			}
+			reader.close(); //잊지말것
 		} catch (Exception e) {
 			System.out.println("에러");
+			e.printStackTrace();
 		}
 		Item i = null;
 		for (String s : temp) {
 			i = new Item();
 			String[] arr = s.split(",");
+			System.out.println(arr[0]);
 			i.setItemId(arr[0]);
 			i.setItemName(arr[1]);
 			i.setTakeDate(arr[2]);
@@ -38,5 +41,4 @@ public class ItemDaoImpl implements ItemDao { // 무조건 try catch
 		}
 		return items;
 	}
-
 }

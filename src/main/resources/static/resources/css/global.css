@@ -76,25 +76,25 @@ table, td {margin 0 auto;
 	width: 100%;
 }
 
-#userData, #items {
+#userData, #itemData {
 	border: 1px solid black;
 	text-align: center;
 	margin: 0 auto;
 }
 
-#userData tr th, #items tr th {
+#userData tr th, #itemData tr th {
 	border: 1px solid black;
 	text-align: center;
 	margin: 0 auto;
 	background-color: yellow
 }
 
-#userData tr, #items tr {
+#userData tr, #itemData tr {
 	height: 30px;
 	border: 1px solid black;
 }
 
-#userData tr td, #items tr td {
+#userData tr td, #itemData tr td {
 	width: 150px;
 	border: 1px solid black;
 }

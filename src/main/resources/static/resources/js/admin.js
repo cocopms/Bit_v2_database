@@ -3,10 +3,8 @@ var admin = admin || {}
 admin = (() => {
 	const ERROR = `호출하는 JS 파일을 찾지 못했습니다.`
 	let user_vue
-	let item_vue
 	let init = () => { // 호출되는 함수
 		user_vue = `resources/vue/user_vue.js`
-		item_vue = `resources/vue/item_vue.js`
 		onCreate()
 	}
 	let onCreate = () => { // 감춰지는 함수(clsoure, 보안)
@@ -67,41 +65,52 @@ admin = (() => {
 			alert(ERROR)
 		})
 	})
-	$('.user_list').click(e => {
-		e.preventDefault()
-		location.href = '/admin'
-	})
-	$('.item_list').click( e => {
-		e.preventDefault()
-		$('#content').empty()
-		$('#content').html(item_vue.item())
-			setContentView()
-		$.getJSON('/items', d => {
-			$.each(d, (i, j) => {
-				$(`
-				<tr>
-	            <td>
-	                <span>${i+1}</span>
-	            </td>
-	            <td>
-	                <span>${j.itemId}</span>
-	            </td>
-	            <td>
-	                 <span>${j.itemName}</span>
-	            </td>
-	            <td>
-	                 <span>${j.takeDate}</span>
-	            </td>
-	            <td>
-	                 <span>${j.category}</span>
-	             </td>
-	             <td>
-	                 <span>${j.takePlace}</span>
-	             </td>
-	             </tr>
-	                `).appendTo('#itemData')
-			})
-		})	
+		$('.user_list').click(e => {
+			e.preventDefault()
+			location.href = '/admin'
+		})
+		$('.item_list').click( e => {
+			e.preventDefault()
+			$('#content').empty()
+			$('#content').html(`
+					<table id="itemData">
+						<tr>
+							<th id="number">No.</a></th>
+							<th id="itemId">분실물ID</th>
+							<th id="itemName">습득물품명</th>
+							<th id="takeDate">습득일자</th>
+							<th id="category">습득물분류</th>
+							<th id="takePlace">습득위치(지하철)</th>
+						</tr>
+					</table>
+			`)
+				setContentView()
+			$.getJSON('/items/list', d => {
+				$.each(d, (i, j) => {
+					$(`
+					<tr>
+					<td>
+                        <span>${i+1}</span>
+                    </td>
+		            <td>
+		                <span>${j.itemId}</span>
+		            </td>
+		            <td>
+		                 <span>${j.itemName}</span>
+		            </td>
+		            <td>
+		                 <span>${j.takeDate}</span>
+		            </td>
+		            <td>
+		                 <span>${j.category}</span>
+		             </td>
+		             <td>
+		                 <span>${j.takePlace}</span>
+		             </td>
+		             </tr>
+		                `).appendTo('#itemData')
+				})
+			})	
 		})
 	}
 		let setContentView = () => {
