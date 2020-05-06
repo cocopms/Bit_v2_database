@@ -3,33 +3,26 @@ package com.cocopmss.web.util;
 import java.io.File;
 
 public enum Data {
-	LIST, CSV, USER_PATH, ADMIN_PATH;
+	ADMINS, USERS, ITEMS;
 
 	@Override
 	public String toString() {
-		String returnValue = "";
-		switch (this) {
-		case ADMIN_PATH:
-			returnValue = "C:"+File.separator+"Users"+File.separator+
-			"bit"+File.separator
-			+"spring-workspace"+File.separator+"cocopm"+File.separator
+		String path = "C:"+File.separator+"Users"+File.separator+"bit"+File.separator
+			+"Basic"+File.separator+"Bit"+File.separator+"cocopmss"+File.separator
 			+"src"+File.separator+"main"+File.separator+"resources"
 			+File.separator+"static"+File.separator+"resources"+File.separator+"file"+File.separator;
+			switch (this) {
+		case ADMINS :
+			path = path.concat("admins.csv"); //합치다. 오버로딩
 			break;
-		case USER_PATH:
-			returnValue = "C:"+File.separator+"Users"+File.separator+"bit"+
-		File.separator+"spring-workspace"+File.separator+"cocopm"+File.separator
-		+"src"+File.separator+"main"+File.separator+"resources"
-		+File.separator+"static"+File.separator+"user"+File.separator;
+		case USERS :
+			path = path.concat("users.csv");
 			break;
-		case CSV :
-			returnValue = ".csv";
-			break;
-		case LIST :
-			returnValue = "list";
+		case ITEMS :
+			path = path.concat("items.csv");
 			break;
 		default : break;
 		}
-		return returnValue;
+		return path;
 	}
 }

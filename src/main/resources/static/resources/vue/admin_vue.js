@@ -1,6 +1,6 @@
 "use strict"
-const adminVue = {
-		join : () => { // 선언하지 않은 이유?
+var adminVue = {
+		join : () => { // 보안이 필요없으므로 이렇게 작성
 			return `
 			<table id="kcdc">
                 <tr>

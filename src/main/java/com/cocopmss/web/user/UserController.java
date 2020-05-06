@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cocopmss.web.item.Item;
 import com.cocopmss.web.util.Messanger;
 
 @RestController
@@ -22,21 +23,21 @@ public class UserController {
 	@Autowired
 	UserService service;
 
-	// 기본적인 rest API(url)
 	@PostMapping("/register")
 	public Messanger register(@RequestBody User user) {
 		service.register(user);
 		return Messanger.SUCCESS;
 	}
 
-	@GetMapping("")
+	@GetMapping("/list")
 	public List<User> list() {
 		return service.findAll();
 	}
 
-	@GetMapping("/{employeeNumber}") //왜 여기부터 이렇게 쓰는가.
-	public User detail(@PathVariable String employeeNumber) {
-		return service.findOne(employeeNumber);
+	@GetMapping("/{userid}") //왜 여기부터 이렇게 쓰는가.
+	public User detail(@PathVariable String userid) {
+		System.out.println(userid);
+		return service.findOne(userid);
 	}
 
 	@PutMapping("/{employeeNumber}")

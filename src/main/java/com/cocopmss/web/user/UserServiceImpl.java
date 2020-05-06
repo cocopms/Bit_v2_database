@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cocopmss.web.item.Item;
+
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -22,8 +24,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User findOne(String employeeNumber) {
-		return dao.selectOne(employeeNumber);
+	public User findOne(String userid) { //toss
+		return dao.selectOne(userid);
 	}
 
 	@Override
@@ -35,6 +37,4 @@ public class UserServiceImpl implements UserService{
 	public void remove(User user) {
 		dao.delete(user);
 	}
-	
-	
 }
